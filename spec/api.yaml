@@ -1,4 +1,4 @@
-openapi: "3.0.1"
+openapi: '3.0.0'
 info:
   title: Cloud Enabled Work Queue
   description: API for FIU Senior Project Fall 2019
@@ -6,7 +6,7 @@ info:
 paths:
   /company:
     get:
-      tags: 
+      tags:
         - company
       summary: Gets all companies
       description: Returns a list containing all companies.
@@ -56,7 +56,7 @@ paths:
         - company
       summary: Updates one company by id
       description: Updates and then returns company by id.
-      parameters: 
+      parameters:
         - $ref: '#/components/parameters/id'
         - $ref: '#/components/parameters/x-auth-token'
       responses:
@@ -73,7 +73,7 @@ paths:
         - company
       summary: Deletes one company by id
       description: Deletes company by id.
-      parameters: 
+      parameters:
         - $ref: '#/components/parameters/id'
         - $ref: '#/components/parameters/x-auth-token'
       responses:
@@ -85,7 +85,7 @@ paths:
           $ref: '#/components/responses/ForbiddenResponse'
   /user:
     get:
-      tags: 
+      tags:
         - user
       summary: Gets all users
       description: Returns a list containing all users.
@@ -114,7 +114,7 @@ paths:
         - user
       summary: Gets one user by id
       description: Returns user by id.
-      parameters: 
+      parameters:
         - in: path
           name: id
           required: true
@@ -134,7 +134,7 @@ paths:
         - user
       summary: Updates one user by id
       description: Updates and then returns user by id.
-      parameters: 
+      parameters:
         - in: path
           name: id
           required: true
@@ -156,7 +156,7 @@ paths:
         - user
       summary: Deletes one user by id
       description: Deletes user by id.
-      parameters: 
+      parameters:
         - in: path
           name: id
           required: true
@@ -171,7 +171,7 @@ paths:
           $ref: '#/components/responses/UnauthorizedResponse'
         '403':
           $ref: '#/components/responses/ForbiddenResponse'
-      
+
 components:
   parameters:
     # auth token
@@ -192,7 +192,7 @@ components:
         type: string
         minimum: 1
         description: Object id
-        
+
   requestBodies:
     CreateCompanyBody:
       description: 'A JSON object containing company information'
@@ -201,9 +201,9 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/CreateCompanyBody'
-    
+
   responses:
-  # Company Responses
+    # Company Responses
     GetAllCompaniesResponse:
       description: A list of companies
       content:
@@ -219,7 +219,7 @@ components:
     GetOneCompanyResponse:
       description: A company
       content:
-        application/json: 
+        application/json:
           schema:
             $ref: '#/components/schemas/Company'
     UpdateOneCompanyResponse:
@@ -249,7 +249,7 @@ components:
     GetOneUserResponse:
       description: A user
       content:
-        application/json: 
+        application/json:
           schema:
             $ref: '#/components/schemas/Users'
     UpdateOneUserResponse:
@@ -262,24 +262,23 @@ components:
       description: Deletion message
       content:
         application/json: {}
-    
+
     # Generic Responses
     BadRequestResponse:
       description: Bad request
       content:
         application/json: {}
-        
+
     UnauthorizedResponse:
       description: Invalid jwt
       content:
         application/json: {}
-    
+
     ForbiddenResponse:
       description: Not authorized to use route
       content:
         application/json: {}
-              
-        
+
     VersionResponse:
       description: Version response object
       headers:
@@ -288,8 +287,8 @@ components:
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/Version"
-  
+            $ref: '#/components/schemas/Version'
+
   headers:
     X-Request-Id:
       required: true
@@ -307,7 +306,7 @@ components:
       properties:
         name:
           type: string
-          example: "Assurant"
+          example: 'Assurant'
     # Generic Data models
     # Company data model
     Company:
@@ -327,7 +326,7 @@ components:
           description: unique ID
         name:
           type: string
-          example: "Assurant"
+          example: 'Assurant'
         owner:
           $ref: '#/components/schemas/User'
         employees:
@@ -339,7 +338,7 @@ components:
         date:
           type: string
           format: date-time
-          example: "2019-09-21T04:00:22.673Z"
+          example: '2019-09-21T04:00:22.673Z'
     # User data model
     User:
       type: object
@@ -400,7 +399,7 @@ components:
     # Event data model
     Event:
       type: object
-      required: 
+      required:
         - _id
         - entity
         - type
@@ -409,7 +408,7 @@ components:
         _id:
           type: string
           format: uuid
-          example: "5d85a05681b9aa99e3c9581d"
+          example: '5d85a05681b9aa99e3c9581d'
           description: unique ID
         entity:
           $ref: '#/components/schemas/User'
@@ -437,7 +436,7 @@ components:
             description: unique ID
           name:
             type: string
-            example: "Assurant"
+            example: 'Assurant'
           owner:
             $ref: '#/components/schemas/User'
           date:
@@ -457,7 +456,7 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/Ticket'
-        
+
     Version:
       type: object
       required:
@@ -467,12 +466,12 @@ components:
           type: string
           example: 1.23.45
           pattern: ^\d\.\d\.\d$
-    
+
     XAuthToken:
       description: Signed jwt for authentication
       type: string
       format: uuid
-    
+
     XRequestId:
       description: unique ID for the request
       type: string

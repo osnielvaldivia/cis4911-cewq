@@ -15,25 +15,24 @@ const Company = require('../models/Company');
 const app = require('../server');
 
 // Load the OpenAPI document
-const openApiDocument 
-    = jsYaml.safeLoad(fs.readFileSync(`${appRoot}/spec/api.yaml`, "utf-8"));
+const openApiDocument = jsYaml.safeLoad(
+  fs.readFileSync(`${appRoot}/spec/api.yaml`, 'utf-8')
+);
 
 // Create the validator from the spec document
 const validator = new OpenApiValidator(openApiDocument, {});
 
 describe('Company', function() {
-    describe('/GET company', () => {
-        // Create the response validator for the GET /company endpoint
-        const validateResponse = validator.validateResponse('get', '/company')
+  describe('/GET company', () => {
+    // Create the response validator for the GET /company endpoint
+    const validateResponse = validator.validateResponse('get', '/company');
 
-        it('should GET all of the companies', async (done) => {
-            const api = request(app);
-            api.get('/company')
-                .expect(200)
-            done();
-        });
-
+    it('should GET all of the companies', async done => {
+      const api = request(app);
+      api.get('/company').expect(200);
+      done();
     });
+  });
 });
 
 //describe('index', function () {

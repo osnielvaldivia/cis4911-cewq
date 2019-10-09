@@ -6,10 +6,13 @@ const { OpenApiValidator } = require('express-openapi-validate');
 const app = express();
 
 // OpenAPI functionality
-const openApiDocument 
-    = jsYaml.safeLoad(fs.readFileSync('./spec/api.yaml', 'utf-8'));
+const openApiDocument = jsYaml.safeLoad(
+  fs.readFileSync('./spec/api.yaml', 'utf-8')
+);
 
-const validator = new OpenApiValidator({apiSpec: './spec/api.yaml'}).install(app);
+const validator = new OpenApiValidator({ apiSpec: './spec/api.yaml' }).install(
+  app
+);
 
 // Connect Database;
 connectDB();
@@ -32,6 +35,8 @@ app.use('/api/employee', require('./routes/api/employee'));
 
 const PORT = process.env.PORT || 5000;
 
-const server = app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+const server = app.listen(PORT, () =>
+  console.log(`Server started on port ${PORT}`)
+);
 
 module.exports = server;
