@@ -1,18 +1,15 @@
 const express = require('express');
 const connectDB = require('./config/db');
+const swaggerJSDoc = require('swagger-jsdoc');
 const jsYaml = require('js-yaml');
 const fs = require('fs');
-const { OpenApiValidator } = require('express-openapi-validate');
+const swaggerUi = require('swagger-ui-express');
 const app = express();
 
-// OpenAPI functionality
-const openApiDocument = jsYaml.safeLoad(
-  fs.readFileSync('./spec/api.yaml', 'utf-8')
-);
-
-const validator = new OpenApiValidator({ apiSpec: './spec/api.yaml' }).install(
-  app
-);
+// Swagger
+const openApiDocument = jsYaml.safeLoad(fs.readFileSync('./spec/api.yaml', 'utf-8'));
+const options = { swaggerDefinition: openApiDocument, apis: ['./**/routes/*.js', 'routes.js'] };
+const swaggerSpec = swaggerJSDoc(options);
 
 // Connect Database;
 connectDB();
@@ -27,7 +24,8 @@ app.use(
 app.get('/', (req, res) => res.send('API Running'));
 
 // Define Routes
-app.use('/api/spec', express.static(spec));
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/company', require('./routes/api/company'));
