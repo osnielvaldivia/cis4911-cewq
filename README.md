@@ -64,16 +64,10 @@ npx depcheck
 
 2. Remove any unused dependencies in package.json
 
-3. Remove the node_modules folder
+3. Execute npm clean script
 
 ```bash
-rm -rf node_modules
-```
-
-4. Install all remaining dependencies
-
-```bash
-npm install
+npm run clean
 ```
 
 ## Authors

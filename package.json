@@ -6,7 +6,10 @@
   "scripts": {
     "start": "node server",
     "server": "nodemon server",
-    "test": "./node_modules/.bin/mocha --exit --timeout 10000"
+    "test": "./node_modules/.bin/mocha --exit --timeout 10000",
+    "remove-modules": "rm -rf node_modules",
+    "install-modules": "npm install",
+    "clean": "npm run remove-modules && npm run install-modules"
   },
   "repository": {
     "type": "git",
