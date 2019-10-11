@@ -28,17 +28,13 @@
     "express-validator": "^5.3.1",
     "faker": "^4.1.0",
     "jsonwebtoken": "^8.5.1",
-    "mongodb": "^3.3.2",
     "mongoose": "^5.5.7",
-    "request": "^2.88.0",
     "swagger-jsdoc": "^3.4.0",
     "swagger-ui-express": "^4.1.2"
   },
   "devDependencies": {
-    "app-root-path": "^2.2.1",
     "chai": "^4.2.0",
     "concurrently": "^4.1.0",
-    "express-openapi-validate": "^0.4.4",
     "js-yaml": "^3.13.1",
     "mocha": "^6.2.1",
     "nodemon": "^1.19.0",
