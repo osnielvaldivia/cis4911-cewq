@@ -57,6 +57,24 @@ router.post(
       res.status(500).send('Server Error');
     }
 
+    // See if owner already has a company
+    try {
+      let company = await Company.findOne({
+        owner: req.user.id
+      });
+
+      if (company) {
+        // Owner already has company, return 400
+        return res.json({
+          msg: 'Owner already has a company',
+        });
+      }
+    }
+    catch (err) {
+      console.log(err.message);
+      res.status(500).send('Server Error');
+    }
+
     // Build company object
     const companyFields = {};
     companyFields.name = name;
