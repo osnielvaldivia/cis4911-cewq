@@ -48,7 +48,7 @@ router.post(
 
       if (company) {
         // Already exists, return 400
-        return res.json({
+        return res.status(400).json({
           msg: 'Company already exists',
         });
       }
@@ -65,7 +65,7 @@ router.post(
 
       if (company) {
         // Owner already has company, return 400
-        return res.json({
+        return res.status(400).json({
           msg: 'Owner already has a company',
         });
       }
