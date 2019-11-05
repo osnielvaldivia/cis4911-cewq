@@ -32,7 +32,7 @@ Open CMD or any CLI in the folder you want to put the project and type this comm
 
 ## Install packages
 
-Go to the project root and type in this command in a CMD or any CLI
+Go to the project root and type in this command in CMD or any CLI
 
 ```bash
 npm install
@@ -50,6 +50,64 @@ Run with just node
 
 ```bash
 node server
+```
+
+## Docker
+
+1. Login to the cis4911 cloud enabled work queue docker account.
+
+**NOTE** replace the ```$DOCKER_USERNAME``` and ```$DOCKER_PASSWORD``` with the actual credentials
+
+```bash
+docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+```
+
+2. Pull the docker image
+
+```bash
+docker pull $DOCKER_USER_ID/cis4911-cewq-backend
+```
+
+3. Run the docker image locally in a container
+
+```bash
+docker run -d -p 49160:5000 $DOCKER_USER_ID/cis4911-cewq-backend
+```
+
+You can now access the API at ```http://localhost:49160```
+
+### Docker building and pushing
+
+1. Build the docker image, this includes continuous integration with automated tests. The build will fail if these tests do not pass.
+
+```bash
+docker build -f Dockerfile -t $DOCKER_USER_ID/cis4911-cewq-backend .
+```
+
+2. Push the docker image to dockerhub
+
+```bash
+docker push $DOCKER_USER_ID/cis4911-cewq-backend
+```
+
+3. Run the docker image locally in a container
+
+```bash
+docker run -d -p 49160:5000 $DOCKER_USER_ID/cis4911-cewq-backend
+```
+
+### Docker Cleanup
+
+1. Delete all containers and their volumes
+
+```bash
+docker rm -vf $(docker ps -a -q)
+```
+
+2. Delete all images
+
+```bash
+docker rmi -f $(docker images -a -q)
 ```
 
 ## Maintenance
