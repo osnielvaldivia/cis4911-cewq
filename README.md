@@ -58,6 +58,8 @@ node server
 
 **NOTE** replace the ```$DOCKER_USERNAME``` and ```$DOCKER_PASSWORD``` with the actual credentials
 
+**NOTE** also if you have a password with the ```!``` character and are also using bash then you must turn off the ```!``` history substitution by typing in ```set +H``` before step 1
+
 ```bash
 docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
 ```
